@@ -5,8 +5,8 @@
     "mock": "/mock",
     "api": "/api"
   },
-  "db": "",
-  "unsplashClientId": "",
+  "db": "mongodb://localhost:17321/easymock",
+  "unsplashClientId": "Unsplash",
   "gravatar": [
     "//img.souche.com/20161230/png/58f22ad636a0f33bad8762688f78d425.png",
     "//img.souche.com/20161230/png/6cdcda90c2f86ba1f45393cf5b26e324.png",
