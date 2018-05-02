@@ -115,14 +115,13 @@
 </style>
 
 <script>
-import conf from 'config'
 import * as api from '../../api'
 
 export default {
   name: 'newProject',
   data () {
     return {
-      uploadAPI: conf.APIPrefix + '/upload',
+      uploadAPI: '/api/upload',
       swaggerType: 'URL',
       remoteLoading: false,
       users: [],
@@ -171,8 +170,11 @@ export default {
         this.form.groupId = proj.user._id
       }
     } else {
-      this.fetchGroup()
-      this.form.groupId = this.user.id
+      this.fetchGroup().then(groups => {
+        if (groups.length < 2) {
+          this.form.groupId = this.user.id
+        }
+      })
     }
   },
   computed: {
@@ -200,7 +202,7 @@ export default {
       const data = response.data
       this.form.projectSwagger = data.path
       this.swaggerType = 'URL'
-      if (data.expire) {
+      if (data.expire && data.expire !== -1) {
         this.$Message.success({
           content: this.$tc('p.new.uploadSuccess', 2, {date: data.expire}),
           duration: 5
@@ -219,7 +221,7 @@ export default {
         : newUrl.replace(/\/\//g, '/').replace(/\/$/, '')
     },
     fetchGroup () {
-      api.group.getList().then((res) => {
+      return api.group.getList().then((res) => {
         if (res.data.success) {
           this.groups = [{ value: this.user.id, label: this.user.nickName }].concat(
             res.data.data.map(o => ({
@@ -228,6 +230,7 @@ export default {
             }))
           )
         }
+        return this.groups
       })
     },
     submit () {
@@ -250,6 +253,14 @@ export default {
           }
         })
       } else {
+        if (this.form.groupId === '') {
+          this.$Message.error({
+            content: this.$t('p.new.form.error.groupIsNull'),
+            duration: 5
+          })
+          return
+        }
+
         if (data.group === this.user.id) {
           data.group = ''
         }
