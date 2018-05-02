@@ -1,6 +1,6 @@
 {
   "port": 7300,
-  "host": "mock.cangdu.org",
+  "host": "0.0.0.0",
   "pageSize": 30,
   "proxy": false,
   "db": "mongodb://localhost/easy-mock",
