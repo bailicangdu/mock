@@ -11,7 +11,7 @@
     "dev": "nodemon --ignore views/ --ignore public/ app",
     "dev:client": "node app",
     "dev:server": "cross-env NODE_ENV=production npm run dev",
-    "start": "cross-env NODE_ENV=production node app",
+    "start": "cross-env NODE_ENV=production pm2 start app.js --name 'node-mock --port 7300'",
     "build": "cross-env NODE_ENV=production npm run build:dev",
     "build:dev": "rimraf dist && npm run build:client && npm run build:server",
     "build:client": "webpack --config build/webpack.client.config.js --progress --hide-modules",
