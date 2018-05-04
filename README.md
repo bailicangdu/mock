@@ -1,6 +1,6 @@
 ## 介绍
 
-> 此项目是根据 Easy Mock 搭建的一个mock平台
+> 此项目是根据 Easy Mock 搭建的一个mock平台，非常不错的一套系统
 
 [https://mock.cangdu.org/](https://mock.cangdu.org/)
 
