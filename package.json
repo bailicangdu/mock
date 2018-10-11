@@ -1,6 +1,6 @@
 {
   "name": "easy-mock",
-  "version": "1.5.1",
+  "version": "1.6.0",
   "description": "可视化模拟数据生成服务",
   "main": "app.js",
   "scripts": {
@@ -11,7 +11,7 @@
     "dev": "nodemon --ignore views/ --ignore public/ app",
     "dev:client": "node app",
     "dev:server": "cross-env NODE_ENV=production npm run dev",
-    "start": "cross-env NODE_ENV=production pm2 start app.js --name 'node-mock --port 7300'",
+    "start": "cross-env NODE_ENV=production node app",
     "build": "cross-env NODE_ENV=production npm run build:dev",
     "build:dev": "rimraf dist && npm run build:client && npm run build:server",
     "build:client": "webpack --config build/webpack.client.config.js --progress --hide-modules",
@@ -47,6 +47,7 @@
     "koa-router": "^7.3.0",
     "koa-static-cache": "^5.1.1",
     "koa-validate": "^1.0.7",
+    "ldapjs": "^1.0.2",
     "lodash": "^4.17.4",
     "lru-cache": "^4.1.1",
     "mkdirp": "^0.5.1",
