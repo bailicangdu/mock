@@ -123,6 +123,9 @@ export default {
   },
   computed: {
     userHeadImg () {
+      if (typeof this.$store.state.user.headImg === 'string') {
+        this.$store.state.user.headImg = this.$store.state.user.headImg.replace(/^https?/, 'https')
+      }
       return this.$store.state.user.headImg
     },
     readChangelog () {
